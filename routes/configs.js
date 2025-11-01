@@ -9,7 +9,8 @@ router.get('/:droneId', async (req, res) => {
   const droneId = Number(req.params.droneId);
 
   try {
-    const resp = await axios.get(CONFIG_URL);
+    // ✅ ต้องส่ง droneId ไปเป็น query param
+    const resp = await axios.get(CONFIG_URL, { params: { droneId } });
     const rows = resp.data.data || [];
     const found = rows.find(r => r.drone_id === droneId);
 
